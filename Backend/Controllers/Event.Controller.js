@@ -2,8 +2,8 @@ import Event from "../Models/Event.model.js";
 
 export const createEvent = async (req, res) => {
   try {
-    const { eventName, description, venue, capacity, EventTime,createdBy } = req.body;
-
+    const { eventName, description, venue, capacity, EventTime } = req.body;
+    const createdBy = req.user._id;
     if (!eventName || !venue || !capacity ||!EventTime) {
       return res.status(400).json({ error: "All required fields must be provided." });
     }

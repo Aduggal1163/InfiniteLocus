@@ -12,7 +12,7 @@ export const getAllEvents = async (req, res) => {
 export const registerEvent = async (req, res) => {
     try {
         
-        const {userId,eventId}=req.body;
+        const {userId,eventId}=req.body; 
         const event = await Event.findById(eventId);
         if (!event) return res.status(404).json({ msg: "Event not found" });
 

@@ -10,6 +10,7 @@ dotenv.config();
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/api/v1/auth",AuthRoutes);
 app.use("/api/v1/event",EventRoutes);
 app.use("/api/v1/user",UserRoutes);
