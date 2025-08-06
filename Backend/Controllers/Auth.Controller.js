@@ -6,7 +6,6 @@ dotenv.config();
 export const signupController = async (req, res) => {
     try {
         const { username, email, password, role, phoneNumber } = req.body;
-        console.log(req.body);
         if (!username || !email || !password || !role) {
             return res.status(400).json({
                 message: "Please fill all the mendatory fields"
@@ -86,7 +85,7 @@ export const signinController = async (req, res) => {
                 id: existingUser._id,
                 name: existingUser.name,
                 email: existingUser.email,
-                role: existingUser.role,
+                role: existingUser.role, 
             },
             token
         })

@@ -20,7 +20,7 @@ const AuthModel= new mongoose.Schema({
         type:Number,
         minLength:10,
         maxLength:10,
-        required:true
+        // required:true
     },
     role:{
         type:String,
@@ -28,6 +28,6 @@ const AuthModel= new mongoose.Schema({
         default:"user",
         required:true
     }
-})
+},{timestamps:true})
 const Auth=new mongoose.model("Auth",AuthModel);
 export default Auth;
