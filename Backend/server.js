@@ -1,15 +1,16 @@
 import express from "express"
-const app=express();
-app.use(express.json());
 import dotenv from "dotenv";
 import { connectDB } from "./DB/connectDb.js";
+import AuthRoutes from './Routes/Auth.Routes.js';
+
+const app=express();
 dotenv.config();
 
+
+app.use(express.json());
+app.use("/api/v1/auth",AuthRoutes);
+
 connectDB();
-
-
-
-
 app.listen(process.env.PORT,()=>{
-    console.log("LISTENING");
+    console.log("Listing");
 })
