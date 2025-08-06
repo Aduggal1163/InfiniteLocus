@@ -1,9 +1,19 @@
 import Event from "../Models/Event.model.js";
+import UserEvent from "../Models/User.model.js";
 
 export const createEvent = async (req, res) => {
   try {
     const { eventName, description, venue, capacity, EventTime } = req.body;
-    const createdBy = req.user._id;
+    const authHeader = req.headers.authorization;
+
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+            return res.status(401).json({ message: "No token provided" });
+        }
+
+        const token = authHeader.split(" ")[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user = await UserEvent.findById(decoded.userId).select("-password");
     if (!eventName || !venue || !capacity ||!EventTime) {
       return res.status(400).json({ error: "All required fields must be provided." });
     }
@@ -14,7 +24,7 @@ export const createEvent = async (req, res) => {
       venue,
       capacity,
       EventTime: EventTime,
-      createdBy
+      createdBy:user
     });
 
     await newEvent.save();
