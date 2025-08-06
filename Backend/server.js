@@ -6,6 +6,10 @@ import { connectDB } from "./DB/connectDb.js";
 dotenv.config();
 
 connectDB();
+
+
+
+
 app.listen(process.env.PORT,()=>{
     console.log("LISTENING");
 })
